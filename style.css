@@ -15,17 +15,12 @@ body{
 	font-family: 'Oswald', sans-serif;
 }
 body {
-    /* Replace 'your-image.jpg' with your actual file name */
     background-image: url('home.jpg'); 
     
-    /* This centers the image */
     background-position: center; 
+
     
-    /* This prevents the image from repeating */
-    background-repeat: no-repeat; 
-    
-    /* This makes the image cover the entire screen */
-    background-size: cover; 
+  
     
     
     /* Fallback color if image fails to load */
@@ -991,5 +986,6 @@ background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('home.j
 #enter-btn:hover {
     background-color: #cc0000;
 }
+
 
 
