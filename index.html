@@ -484,8 +484,26 @@
 <script>
   new WOW().init();
 </script>
+	<script>
+    const overlay = document.getElementById('music-overlay');
+    const enterBtn = document.getElementById('enter-btn');
+    const audio = document.getElementById('bgAudio');
+
+    enterBtn.addEventListener('click', function() {
+        // 1. Play the audio
+        audio.play().then(() => {
+            console.log("Music started!");
+        }).catch(err => {
+            console.log("Playback error:", err);
+        });
+
+        // 2. Hide the overlay
+        overlay.style.display = 'none';
+    });
+</script>
 </body>
 </html>
+
 
 
 
