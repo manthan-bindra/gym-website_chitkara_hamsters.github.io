@@ -961,31 +961,18 @@ flex: 0 0 100%;
     transition: opacity 0.5s ease; /* Adds a smooth fade-out */
 }
 
+/* Glassmorphism for Price Cards */
 .price-package .content .box .inner {
-    /* 1. Translucent background */
-    background: rgba(255, 255, 255, 0.05) !important;
-    
-    /* 2. The frosted blur effect */
-    backdrop-filter: blur(15px) !important;
-    -webkit-backdrop-filter: blur(15px); /* Safari support */
-    
-    /* 3. Subtle glass border */
+    background: rgba(255, 255, 255, 0.05) !important; /* Force transparent */
+    backdrop-filter: blur(15px) !important;           /* Force blur */
+    -webkit-backdrop-filter: blur(15px);
     border: 1px solid rgba(255, 255, 255, 0.1) !important;
-    
-    /* 4. Rounded corners and spacing */
-    border-radius: 15px !important;
-    padding: 30px;
-    
-    /* 5. Soft outer shadow for depth */
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37) !important;
-    
-    transition: 0.3s ease;
+    border-radius: 20px !important;
+    padding: 30px !important;
 }
 
-/* Hover effect to make it feel interactive */
-.price-package .content .box .inner:hover {
-    background: rgba(255, 255, 255, 0.1) !important;
-    border: 1px solid rgba(255, 0, 0, 0.5) !important; /* Glows red on hover */
-    transform: translateY(-10px);
+/* Fix text visibility on glass */
+.price-package .content .box .inner h3, 
+.price-package .content .box .inner p {
+    color: #ffffff !important;
 }
-
