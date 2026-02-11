@@ -947,7 +947,7 @@ flex: 0 0 100%;
     height: 100%;
     
     /* ADD THE IMAGE HERE INSTEAD OF BODY */
-    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('home.jpg');
+    background-image: url("home.jpeg");
     background-size: cover;
     background-position: center;
     
@@ -960,3 +960,4 @@ flex: 0 0 100%;
     font-family: sans-serif;
     transition: opacity 0.5s ease; /* Adds a smooth fade-out */
 }
+
