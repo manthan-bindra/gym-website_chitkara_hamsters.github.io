@@ -964,22 +964,20 @@ flex: 0 0 100%;
 	background-image:url("home.jpg")
 }
 
-/* Glassmorphism effect for Price Cards */
-.price-package .box .inner {
-    background: rgba(255, 255, 255, 0.05) !important; /* Semi-transparent white */
-    backdrop-filter: blur(15px); /* This creates the frosted glass look */
-    -webkit-backdrop-filter: blur(15px); /* Support for Safari */
-    border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border for edge definition */
-    border-radius: 15px;
-    padding: 30px;
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-    transition: 0.3s;
+/* Targeted Glassmorphism for your Pricing Cards */
+.price-package .content .box .inner {
+    background: rgba(255, 255, 255, 0.1) !important; /* Semi-transparent */
+    backdrop-filter: blur(15px) !important; /* Frosted glass effect */
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    border-radius: 15px !important;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5) !important;
 }
 
-/* Hover effect to make it glow */
-.price-package .box .inner:hover {
-    background: rgba(255, 255, 255, 0.1) !important;
-    border: 1px solid rgba(255, 0, 0, 0.5); /* Glows red on hover to match your theme */
-    transform: translateY(-10px);
+/* Ensure the text inside remains readable */
+.price-package .content .box .inner h3, 
+.price-package .content .box .inner p,
+.price-package .content .box .inner .price-tag {
+    color: #ffffff !important;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
 }
-
