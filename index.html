@@ -364,7 +364,7 @@
   	 	  </div>
   	 </div>
   </section>
-  <section class="bmi-section" style="padding: 100px 0; background: #000; text-align: center;">
+  <section class="bmi-section" id="bmi" style="padding: 100px 0; background: #000; text-align: center;">
     <h2 style="color: #ff0000;">CALCULATE YOUR BMI</h2>
     <div style="max-width: 400px; margin: auto; background: #1a1a1a; padding: 30px; border-radius: 10px;">
         <input type="number" id="weight" placeholder="Weight (kg)" style="width:90%; padding:10px; margin:10px 0; background:#333; color:#fff; border:none;">
@@ -427,48 +427,19 @@ function calcBMI() {
 
  <!-- jquery -->
 
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script>
-	$(document).ready(function(){
-
-      $(".ham-burger, .nav ul li a").click(function(){
-       
-        $(".nav").toggleClass("open")
-
-        $(".ham-burger").toggleClass("active");
-      })      
-      
-
-              // add active class in navigation
-              $(".nav ul li a").removeClass("active")
-              $(this).addClass("active")
-         }
-      })
-})
-
-</script>
-<script src="js/wow.min.js"></script>
-<script>
-    wow = new WOW(
-      {
-        animateClass: 'animated',
-        offset:       0,
-      }
-    );
-    wow.init();
-  </script>
 <audio id="bgAudio" preload="auto">
         <source src="2.mp3" type="audio/mpeg">
     </audio>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
     <script>
+        // 1. Initialize Animations
         new WOW().init();
-    </script>
 
-    <script>
-        const overlay = document.getElementById('music-overlay');
+        // 2. Music and Overlay Logic
         const enterBtn = document.getElementById('enter-btn');
+        const overlay = document.getElementById('music-overlay');
         const audio = document.getElementById('bgAudio');
 
         if(enterBtn) {
@@ -478,22 +449,31 @@ function calcBMI() {
             });
         }
 
-        // Paste your BMI function here if it's not working yet
+        // 3. BMI Logic
         function calcBMI() {
-            const weight = document.getElementById('weight').value;
-            const height = document.getElementById('height').value / 100;
+            const w = document.getElementById('weight').value;
+            const h = document.getElementById('height').value / 100;
             const display = document.getElementById('bmi-display');
-            if (weight > 0 && height > 0) {
-                const bmi = (weight / (height * height)).toFixed(1);
-                display.style.display = 'block';
+            if (w > 0 && h > 0) {
+                const bmi = (w / (h * h)).toFixed(1);
                 document.getElementById('bmi-result').innerText = "Your BMI: " + bmi;
+                // Add your status logic here
             }
         }
-    </script>
 
-	
+        // 4. Smooth Scroll for Nav
+        $(document).ready(function(){
+            $(".nav ul li a").click(function(){
+                $(".nav").removeClass("open");
+                $(".ham-burger").removeClass("active");
+            });
+        });
+    </script>
 </body>
 </html>
+</body>
+</html>
+
 
 
 
