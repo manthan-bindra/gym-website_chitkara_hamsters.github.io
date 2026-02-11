@@ -373,6 +373,12 @@
         <button onclick="calcBMI()" class="btn" style="margin-top:20px;">CALCULATE</button>
         <h3 id="bmi-result" style="margin-top:20px; color:#ff0000;"></h3>
     </div>
+	<div class="bmi-guide wow fadeInUp" style="max-width: 400px; margin: 20px auto; color: #ccc;">
+    <h4 style="color: #fff;">Reference Guide</h4>
+    <p><span style="color:#ffcc00">Yellow:</span> Underweight (<18.5)</p>
+    <p><span style="color:#00ff00">Green:</span> Healthy (18.5-24.9)</p>
+    <p><span style="color:#ff0000">Red:</span> Overweight (>25)</p>
+</div>
 </section>
 
 <script>
@@ -448,64 +454,47 @@ function calcBMI() {
  <!-- jquery -->
 
 <audio id="bgAudio" preload="auto">
-        <source src="2.mp3" type="audio/mpeg">
+        <source src="1.mp3" type="audio/mpeg">
     </audio>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
-
     <script>
-        // Initialize Animations
         new WOW().init();
 
-        // Navigation Toggle Logic (Fixes the "Not Opening" issue)
+        // Music Overlay
+        const enterBtn = document.getElementById('enter-btn');
+        const overlay = document.getElementById('music-overlay');
+        const audio = document.getElementById('bgAudio');
+        if(enterBtn) {
+            enterBtn.addEventListener('click', function() {
+                audio.play().catch(err => console.log("Music blocked"));
+                if(overlay) overlay.style.display = 'none';
+            });
+        }
+
+        // Updated BMI with Color Logic
+        function calcBMI() {
+            const w = document.getElementById('weight').value;
+            const h = document.getElementById('height').value / 100;
+            const res = document.getElementById('bmi-result');
+            if (w > 0 && h > 0) {
+                const bmi = (w / (h * h)).toFixed(1);
+                res.innerText = "Your BMI: " + bmi;
+                if (bmi < 18.5) res.style.color = "#ffcc00"; 
+                else if (bmi <= 24.9) res.style.color = "#00ff00"; 
+                else res.style.color = "#ff0000";
+            }
+        }
+
+        // Fix Navigation Menu Toggle
         $(document).ready(function(){
             $(".ham-burger").click(function(){
                 $(".nav").toggleClass("open");
                 $(this).toggleClass("active");
             });
-
-            $(".nav ul li a").click(function(){
-                $(".nav").removeClass("open");
-                $(".ham-burger").removeClass("active");
-            });
         });
-
-        // Music and Overlay Logic
-        const enterBtn = document.getElementById('enter-btn');
-        const overlay = document.getElementById('music-overlay');
-        const audio = document.getElementById('bgAudio');
-
-        if(enterBtn) {
-            enterBtn.addEventListener('click', function() {
-                audio.play().catch(err => console.log("Audio Blocked:", err));
-                if(overlay) overlay.style.display = 'none';
-            });
-        }
-
-        function calcBMI() {
-    const w = document.getElementById('weight').value;
-    const h = document.getElementById('height').value / 100;
-    const resultDisplay = document.getElementById('bmi-result');
-    
-    if (w > 0 && h > 0) {
-        const bmi = (w / (h * h)).toFixed(1);
-        resultDisplay.innerText = "Your BMI: " + bmi;
-        
-        // This is where we add the color logic
-        if (bmi < 18.5) {
-            resultDisplay.style.color = "#ffcc00"; // Yellow for Underweight
-        } else if (bmi >= 18.5 && bmi <= 24.9) {
-            resultDisplay.style.color = "#00ff00"; // Green for Healthy
-        } else if (bmi >= 25 && bmi <= 29.9) {
-            resultDisplay.style.color = "#ffa500"; // Orange for Overweight
-        } else {
-            resultDisplay.style.color = "#ff0000"; // Red for Obese
-        }
-    }
-}
     </script>
-</body>
-</html>
+
 
 
