@@ -26,7 +26,8 @@
  	 	<div class="logo">
  	 		 <a href="">Fitness <span>Club</span></a>
  	 	</div>
- 	 	<a href="javascript:void(0)" class="ham-burger">
+ 	 	<a href="javascript:void(0)" 
+			class="ham-burger">
  	       <span></span>	
  	       <span></span>
  	 	</a>
@@ -428,20 +429,33 @@ function calcBMI() {
  <!-- jquery -->
 
 <audio id="bgAudio" preload="auto">
-        <source src="1.mp3" type="audio/mpeg">
-    </audio>
+    <source src="2.mp3" type="audio/mpeg">
+</audio>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
     <script>
-        // Initialize Animations
+        // 1. Initialize Animations
         new WOW().init();
 
-        // Music Overlay Logic
+        // 2. Navigation Menu Toggle (Fixes the "Not Opening" issue)
+        $(document).ready(function(){
+            $(".ham-burger").click(function(){
+                $(".nav").toggleClass("open");
+                $(this).toggleClass("active");
+            });
+
+            // Close menu when a link is clicked
+            $(".nav ul li a").click(function(){
+                $(".nav").removeClass("open");
+                $(".ham-burger").removeClass("active");
+            });
+        });
+
+        // 3. Music Logic
         const enterBtn = document.getElementById('enter-btn');
         const overlay = document.getElementById('music-overlay');
         const audio = document.getElementById('bgAudio');
-
         if(enterBtn) {
             enterBtn.addEventListener('click', function() {
                 audio.play().catch(err => console.log("Music blocked:", err));
@@ -449,24 +463,15 @@ function calcBMI() {
             });
         }
 
-        // BMI Calculation Logic
+        // 4. BMI Logic
         function calcBMI() {
-            const weight = document.getElementById('weight').value;
-            const height = document.getElementById('height').value / 100;
-            const resultDisplay = document.getElementById('bmi-result');
-            if (weight > 0 && height > 0) {
-                const bmi = (weight / (height * height)).toFixed(1);
-                resultDisplay.innerText = "Your BMI: " + bmi;
+            const w = document.getElementById('weight').value;
+            const h = document.getElementById('height').value / 100;
+            if (w > 0 && h > 0) {
+                const bmi = (w / (h * h)).toFixed(1);
+                document.getElementById('bmi-result').innerText = "Your BMI: " + bmi;
             }
         }
-
-        // Navigation Menu Logic
-        $(document).ready(function(){
-            $(".nav ul li a").click(function(){
-                $(".nav").removeClass("open");
-                $(".ham-burger").removeClass("active");
-            });
-        });
     </script>
 </body>
 </html>
