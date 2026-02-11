@@ -967,22 +967,30 @@ flex: 0 0 100%;
 	background-position: center;
 }
 
-/* Targeted Glassmorphism for your Pricing Cards */
 .price-package .content .box .inner {
-    background: rgba(255, 255, 255, 0.1) !important; /* Semi-transparent */
-    backdrop-filter: blur(15px) !important; /* Frosted glass effect */
-    -webkit-backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    /* 1. Translucent background */
+    background: rgba(255, 255, 255, 0.05) !important;
+    
+    /* 2. The frosted blur effect */
+    backdrop-filter: blur(15px) !important;
+    -webkit-backdrop-filter: blur(15px); /* Safari support */
+    
+    /* 3. Subtle glass border */
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    
+    /* 4. Rounded corners and spacing */
     border-radius: 15px !important;
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5) !important;
+    padding: 30px;
+    
+    /* 5. Soft outer shadow for depth */
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37) !important;
+    
+    transition: 0.3s ease;
 }
 
-/* Ensure the text inside remains readable */
-.price-package .content .box .inner h3, 
-.price-package .content .box .inner p,
-.price-package .content .box .inner .price-tag {
-    color: #ffffff !important;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+/* Hover effect to make it feel interactive */
+.price-package .content .box .inner:hover {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid rgba(255, 0, 0, 0.5) !important; /* Glows red on hover */
+    transform: translateY(-10px);
 }
-
-
