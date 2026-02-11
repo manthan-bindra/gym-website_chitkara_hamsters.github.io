@@ -961,7 +961,10 @@ flex: 0 0 100%;
     transition: opacity 0.5s ease; /* Adds a smooth fade-out */
 }
 .container{
-	background-image:url("home.jpg")
+	background-image:url("home.jpg");
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-position: center;
 }
 
 /* Targeted Glassmorphism for your Pricing Cards */
@@ -981,3 +984,4 @@ flex: 0 0 100%;
     color: #ffffff !important;
     text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
 }
+
