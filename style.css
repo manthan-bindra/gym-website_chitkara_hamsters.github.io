@@ -144,7 +144,7 @@ header .ham-burger.active span:nth-child(2){
 /*Home section*/
 .home{
 	height: 100vh;
-	background-image: url('../images/home.jpg');
+	background-image: url('home.jpg');
 	background-size: cover;
 	padding:15px;
 	-webkit-display: flex;
@@ -960,12 +960,6 @@ flex: 0 0 100%;
     font-family: sans-serif;
     transition: opacity 0.5s ease; /* Adds a smooth fade-out */
 }
-.home wow flash{
-	background-image:url("home.jpg");
-	background-repeat: no-repeat;
-	background-attachment: fixed;
-	background-position: center;
-}
 
 .price-package .content .box .inner {
     /* 1. Translucent background */
@@ -994,3 +988,4 @@ flex: 0 0 100%;
     border: 1px solid rgba(255, 0, 0, 0.5) !important; /* Glows red on hover */
     transform: translateY(-10px);
 }
+
