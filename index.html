@@ -363,6 +363,24 @@
   	 	  </div>
   	 </div>
   </section>
+		<section class="bmi-section" style="padding: 100px 0; background: #000; text-align: center;">
+    <h2 style="color: #ff0000;">CALCULATE YOUR BMI</h2>
+    <div style="max-width: 400px; margin: auto; background: #1a1a1a; padding: 30px; border-radius: 10px;">
+        <input type="number" id="weight" placeholder="Weight (kg)" style="width:90%; padding:10px; margin:10px 0; background:#333; color:#fff; border:none;">
+        <input type="number" id="height" placeholder="Height (cm)" style="width:90%; padding:10px; margin:10px 0; background:#333; color:#fff; border:none;">
+        <button onclick="calcBMI()" class="btn" style="margin-top:20px;">CALCULATE</button>
+        <h3 id="bmi-result" style="margin-top:20px; color:#ff0000;"></h3>
+    </div>
+</section>
+
+<script>
+function calcBMI() {
+    let w = document.getElementById('weight').value;
+    let h = document.getElementById('height').value / 100;
+    let bmi = (w / (h * h)).toFixed(1);
+    document.getElementById('bmi-result').innerText = "Your BMI: " + bmi;
+}
+</script>
  <!-- End Price -->
 
  <!-- Start Contact -->
@@ -467,6 +485,7 @@
 	
 </body>
 </html>
+
 
 
 
