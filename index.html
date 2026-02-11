@@ -386,6 +386,24 @@ function calcBMI() {
  <!-- End Price -->
 
  <!-- Start Contact -->
+		<section class="stats" style="padding: 80px 0; background: #111; text-align: center; color: white;">
+    <div class="container wow fadeInUp">
+        <div style="display: flex; justify-content: space-around; flex-wrap: wrap;">
+            <div style="margin: 20px;">
+                <h2 style="color: #ff0000; font-size: 40px; margin: 0;">500+</h2>
+                <p style="text-transform: uppercase; letter-spacing: 2px;">Happy Members</p>
+            </div>
+            <div style="margin: 20px;">
+                <h2 style="color: #ff0000; font-size: 40px; margin: 0;">10+</h2>
+                <p style="text-transform: uppercase; letter-spacing: 2px;">Expert Trainers</p>
+            </div>
+            <div style="margin: 20px;">
+                <h2 style="color: #ff0000; font-size: 40px; margin: 0;">15+</h2>
+                <p style="text-transform: uppercase; letter-spacing: 2px;">Daily Classes</p>
+            </div>
+        </div>
+    </div>
+</section>
   <section class="contact" id="contact">
      <div class="container">
         <div class="content">
@@ -464,16 +482,28 @@ function calcBMI() {
             });
         }
 
-        // BMI Calculation Logic
         function calcBMI() {
-            const w = document.getElementById('weight').value;
-            const h = document.getElementById('height').value / 100;
-            const resultDisplay = document.getElementById('bmi-result');
-            if (w > 0 && h > 0) {
-                const bmi = (w / (h * h)).toFixed(1);
-                resultDisplay.innerText = "Your BMI: " + bmi;
-            }
+    const w = document.getElementById('weight').value;
+    const h = document.getElementById('height').value / 100;
+    const resultDisplay = document.getElementById('bmi-result');
+    
+    if (w > 0 && h > 0) {
+        const bmi = (w / (h * h)).toFixed(1);
+        resultDisplay.innerText = "Your BMI: " + bmi;
+        
+        // This is where we add the color logic
+        if (bmi < 18.5) {
+            resultDisplay.style.color = "#ffcc00"; // Yellow for Underweight
+        } else if (bmi >= 18.5 && bmi <= 24.9) {
+            resultDisplay.style.color = "#00ff00"; // Green for Healthy
+        } else if (bmi >= 25 && bmi <= 29.9) {
+            resultDisplay.style.color = "#ffa500"; // Orange for Overweight
+        } else {
+            resultDisplay.style.color = "#ff0000"; // Red for Obese
         }
+    }
+}
     </script>
 </body>
 </html>
+
