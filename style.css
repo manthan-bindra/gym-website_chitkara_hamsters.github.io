@@ -961,30 +961,3 @@ flex: 0 0 100%;
     transition: opacity 0.5s ease; /* Adds a smooth fade-out */
 }
 
-/* Glassmorphism for Price Cards */
-.price-package .content .box .inner {
-    background: rgba(255, 255, 255, 0.05) !important; /* Force transparent */
-    backdrop-filter: blur(15px) !important;           /* Force blur */
-    -webkit-backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 255, 255, 0.1) !important;
-    border-radius: 20px !important;
-    padding: 30px !important;
-}
-
-/* Fix text visibility on glass */
-.price-package .content .box .inner h3, 
-.price-package .content .box .inner p {
-    color: #ffffff !important;
-}
-header {
-    position: fixed !important;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
-    background: rgba(0, 0, 0, 0.7) !important;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-bottom: 2px solid #ff0000;
-}
-
