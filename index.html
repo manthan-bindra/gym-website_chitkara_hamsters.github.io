@@ -112,7 +112,7 @@
                   <h2>Services</h2>
                   <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries</p>
                   <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries</p>
-                  <a href="" class="btn">Start Now</a>
+                  <a href="#price" class="btn">Start Now</a>
  		 	  </div>
  		 	  <div class="accordian box wow slideInRight">
  		 	  	    <div class="accordian-container active">
@@ -208,7 +208,7 @@
  		 	  <div class="box text wow slideInLeft">
  		 	  	 <h2>Start Your Training Today</h2>
  		 	  	 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,</p>
- 		 	  	 <a href="" class="btn">Start Now</a>
+ 		 	  	 <a href="#price" class="btn">Start Now</a>
  		 	  </div>
  		 	  <div class="box img wow slideInRight">
  		 	  	 <img src="gallery4.jpg" alt="start today" />
@@ -318,7 +318,7 @@
   	 	  	  	  	   	  <p>No Time Restrictions</p>
   	 	  	  	  	   	  <p>Gym and Cardio</p>
   	 	  	  	  	   	  <p>Service Locker Rooms</p>
-  	 	  	  	  	   	  <a href="" class="btn">Join Now</a>
+  	 	  	  	  	   	  <a href="payment.html" class="btn">Join Now</a>
   	 	  	  	  	   </div>
   	 	  	  	  </div>
   	 	  	  </div>
@@ -337,7 +337,7 @@
   	 	  	  	  	   	  <p>No Time Restrictions</p>
   	 	  	  	  	   	  <p>Gym and Cardio</p>
   	 	  	  	  	   	  <p>Service Locker Rooms</p>
-  	 	  	  	  	   	  <a href="" class="btn">Join Now</a>
+  	 	  	  	  	   	  <a href="payment.html" class="btn">Join Now</a>
   	 	  	  	  	   </div>
   	 	  	  	  </div>
   	 	  	  </div>
@@ -356,7 +356,7 @@
   	 	  	  	  	   	  <p>No Time Restrictions</p>
   	 	  	  	  	   	  <p>Gym and Cardio</p>
   	 	  	  	  	   	  <p>Service Locker Rooms</p>
-  	 	  	  	  	   	  <a href="" class="btn">Join Now</a>
+  	 	  	  	  	   	  <a href="payment.html" class="btn">Join Now</a>
   	 	  	  	  	   </div>
   	 	  	  	  </div>
   	 	  	  </div>
@@ -418,27 +418,7 @@
 
         $(".ham-burger").toggleClass("active");
       })      
-      $(".accordian-container").click(function(){
-      	$(".accordian-container").children(".body").slideUp();
-      	$(".accordian-container").removeClass("active")
-      	$(".accordian-container").children(".head").children("span").removeClass("fa-angle-down").addClass("fa-angle-up")
-      	$(this).children(".body").slideDown();
-      	$(this).addClass("active")
-      	$(this).children(".head").children("span").removeClass("fa-angle-up").addClass("fa-angle-down")
-      })
-
-       $(".nav ul li a, .go-down").click(function(event){
-         if(this.hash !== ""){
-
-              event.preventDefault();
-
-              var hash=this.hash; 
-
-              $('html,body').animate({
-                scrollTop:$(hash).offset().top
-              },800 , function(){
-                 window.location.hash=hash;
-              });
+      
 
               // add active class in navigation
               $(".nav ul li a").removeClass("active")
@@ -503,6 +483,7 @@
 </script>
 </body>
 </html>
+
 
 
 
