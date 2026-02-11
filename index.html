@@ -363,7 +363,7 @@
   	 	  </div>
   	 </div>
   </section>
-		<section class="bmi-section" style="padding: 100px 0; background: #000; text-align: center;">
+  <section class="bmi-section" style="padding: 100px 0; background: #000; text-align: center;">
     <h2 style="color: #ff0000;">CALCULATE YOUR BMI</h2>
     <div style="max-width: 400px; margin: auto; background: #1a1a1a; padding: 30px; border-radius: 10px;">
         <input type="number" id="weight" placeholder="Weight (kg)" style="width:90%; padding:10px; margin:10px 0; background:#333; color:#fff; border:none;">
@@ -456,35 +456,44 @@ function calcBMI() {
     );
     wow.init();
   </script>
-	</script>
-	<audio id="bgAudio">
-    <source src="2.mp3" type="audio/mpeg">
-</audio>
+<audio id="bgAudio" preload="auto">
+        <source src="2.mp3" type="audio/mpeg">
+    </audio>
 
-<script>
-    const overlay = document.getElementById('music-overlay');
-    const enterBtn = document.getElementById('enter-btn');
-    const audio = document.getElementById('bgAudio');
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+    <script>
+        new WOW().init();
+    </script>
 
-    enterBtn.addEventListener('click', function() {
-        // 1. Play the audio
-        audio.play().then(() => {
-            console.log("Music started!");
-        }).catch(err => {
-            console.log("Playback error:", err);
-        });
+    <script>
+        const overlay = document.getElementById('music-overlay');
+        const enterBtn = document.getElementById('enter-btn');
+        const audio = document.getElementById('bgAudio');
 
-        // 2. Hide the overlay
-        overlay.style.display = 'none';
-    });
-</script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
-<script>
-  new WOW().init();
-</script>
+        if(enterBtn) {
+            enterBtn.addEventListener('click', function() {
+                audio.play().catch(err => console.log("Playback error:", err));
+                if(overlay) overlay.style.display = 'none';
+            });
+        }
+
+        // Paste your BMI function here if it's not working yet
+        function calcBMI() {
+            const weight = document.getElementById('weight').value;
+            const height = document.getElementById('height').value / 100;
+            const display = document.getElementById('bmi-display');
+            if (weight > 0 && height > 0) {
+                const bmi = (weight / (height * height)).toFixed(1);
+                display.style.display = 'block';
+                document.getElementById('bmi-result').innerText = "Your BMI: " + bmi;
+            }
+        }
+    </script>
+
 	
 </body>
 </html>
+
 
 
 
