@@ -429,47 +429,49 @@ function calcBMI() {
  <!-- jquery -->
 
 <audio id="bgAudio" preload="auto">
-    <source src="2.mp3" type="audio/mpeg">
-</audio>
+        <source src="2.mp3" type="audio/mpeg">
+    </audio>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+
     <script>
-        // 1. Initialize Animations
+        // Initialize Animations
         new WOW().init();
 
-        // 2. Navigation Menu Toggle (Fixes the "Not Opening" issue)
+        // Navigation Toggle Logic (Fixes the "Not Opening" issue)
         $(document).ready(function(){
             $(".ham-burger").click(function(){
                 $(".nav").toggleClass("open");
                 $(this).toggleClass("active");
             });
 
-            // Close menu when a link is clicked
             $(".nav ul li a").click(function(){
                 $(".nav").removeClass("open");
                 $(".ham-burger").removeClass("active");
             });
         });
 
-        // 3. Music Logic
+        // Music and Overlay Logic
         const enterBtn = document.getElementById('enter-btn');
         const overlay = document.getElementById('music-overlay');
         const audio = document.getElementById('bgAudio');
+
         if(enterBtn) {
             enterBtn.addEventListener('click', function() {
-                audio.play().catch(err => console.log("Music blocked:", err));
+                audio.play().catch(err => console.log("Audio Blocked:", err));
                 if(overlay) overlay.style.display = 'none';
             });
         }
 
-        // 4. BMI Logic
+        // BMI Calculation Logic
         function calcBMI() {
             const w = document.getElementById('weight').value;
             const h = document.getElementById('height').value / 100;
+            const resultDisplay = document.getElementById('bmi-result');
             if (w > 0 && h > 0) {
                 const bmi = (w / (h * h)).toFixed(1);
-                document.getElementById('bmi-result').innerText = "Your BMI: " + bmi;
+                resultDisplay.innerText = "Your BMI: " + bmi;
             }
         }
     </script>
