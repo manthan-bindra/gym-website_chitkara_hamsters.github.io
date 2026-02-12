@@ -300,6 +300,23 @@
 <!-- End Gallery -->
 
  <!-- Start Price -->
+  <section id="quiz-section" style="padding: 100px 0; background: #000; color: #fff; text-align: center;">
+    <div class="container">
+        <h2 style="color: #ff0000; margin-bottom: 20px;">FIND YOUR PERFECT FIT</h2>
+        <div id="quiz-container" style="max-width: 500px; margin: 0 auto; background: #1a1a1a; padding: 40px; border: 1px solid #333;">
+            <div id="question-space">
+                <h3 id="question-text" style="margin-bottom: 25px;">How often do you plan to work out?</h3>
+                <div id="options-space" style="display: flex; flex-direction: column; gap: 15px;">
+                    </div>
+            </div>
+            <div id="result-space" style="display: none;">
+                <h3 style="margin-bottom: 10px;">Your Match:</h3>
+                <h2 id="recommended-plan" style="color: #ff0000; font-size: 2rem; margin-bottom: 20px;"></h2>
+                <button onclick="scrollToPricing()" class="btn">SELECT THIS PLAN</button>
+            </div>
+        </div>
+    </div>
+</section>
   <section class="price-package" id="price">
   	 <div class="container">
   	 	  <h2>Choose Your Package</h2>
@@ -494,10 +511,71 @@ function calcBMI() {
                 $(this).toggleClass("active");
             });
         });
+	// --- Gym Membership Quiz Logic ---
+const quizData = [
+    {
+        question: "What is your main priority?",
+        options: [
+            { text: "Just the basics & cardio", score: "Elite" },
+            { text: "24/7 access & flexibility", score: "Elite Plus" },
+            { text: "Full amenities & locker rooms", score: "Premium" }
+        ]
+    },
+    {
+        question: "Do you need 24/7 access (No Time Restrictions)?",
+        options: [
+            { text: "No, standard hours are fine", score: "Elite" },
+            { text: "Yes, I need flexibility", score: "Elite Plus" },
+            { text: "Absolutely, plus premium services", score: "Premium" }
+        ]
+    }
+];
+
+let currentQ = 0;
+let quizScores = { "Elite": 0, "Elite Plus": 0, "Premium": 0 };
+
+function loadQuiz() {
+    const q = quizData[currentQ];
+    document.getElementById("question-text").innerText = q.question;
+    const optionsDiv = document.getElementById("options-space");
+    optionsDiv.innerHTML = "";
+    
+    q.options.forEach(opt => {
+        const btn = document.createElement("button");
+        btn.innerText = opt.text;
+        btn.className = "btn"; // Uses your existing global button styles
+        btn.style.display = "block";
+        btn.style.width = "100%";
+        btn.onclick = () => {
+            quizScores[opt.score]++;
+            currentQ++;
+            if (currentQ < quizData.length) { loadQuiz(); } 
+            else { showQuizResult(); }
+        };
+        optionsDiv.appendChild(btn);
+    });
+}
+
+function showQuizResult() {
+    document.getElementById("question-space").style.display = "none";
+    const resultSpace = document.getElementById("result-space");
+    resultSpace.style.display = "block";
+    
+    const winner = Object.keys(quizScores).reduce((a, b) => quizScores[a] > quizScores[b] ? a : b);
+    document.getElementById("recommended-plan").innerText = winner + " Membership";
+}
+
+function scrollToPricing() {
+    document.getElementById("price").scrollIntoView({ behavior: 'smooth' });
+}
+
+// Start the quiz on page load
+loadQuiz();
     </script>
 
 </body>
 </html>
+
 
 
 
