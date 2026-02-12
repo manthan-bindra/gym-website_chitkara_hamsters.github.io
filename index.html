@@ -527,46 +527,21 @@ function calcBMI() {
     <script>
         new WOW().init();
 
-        // Music Overlay
-        const enterBtn = document.getElementById('enter-btn');
-        const overlay = document.getElementById('music-overlay');
-        const audio = document.getElementById('bgAudio');
-        if(enterBtn) {
-            enterBtn.addEventListener('click', function() {
-                audio.play().catch(err => console.log("Music blocked"));
-                if(overlay) overlay.style.display = 'none';
-            });
-        }
+// --- 1. Global Functions (BMI & Navigation) ---
+function calcBMI() {
+    const w = document.getElementById('weight').value;
+    const h = document.getElementById('height').value / 100;
+    const res = document.getElementById('bmi-result');
+    if (w > 0 && h > 0) {
+        const bmi = (w / (h * h)).toFixed(1);
+        res.innerText = "Your BMI: " + bmi;
+        if (bmi < 18.5) res.style.color = "#ffcc00";
+        else if (bmi <= 24.9) res.style.color = "#00ff00";
+        else res.style.color = "#ff0000";
+    }
+}
 
-        // Updated BMI with Color Logic
-        function calcBMI() {
-            const w = document.getElementById('weight').value;
-            const h = document.getElementById('height').value / 100;
-            const res = document.getElementById('bmi-result');
-            if (w > 0 && h > 0) {
-                const bmi = (w / (h * h)).toFixed(1);
-                res.innerText = "Your BMI: " + bmi;
-                if (bmi < 18.5) res.style.color = "#ffcc00"; 
-                else if (bmi <= 24.9) res.style.color = "#00ff00"; 
-                else res.style.color = "#ff0000";
-            }
-        }
-
-$(document).ready(function() {
-    // 1. Navigation Menu Toggle
-    $(".ham-burger").click(function() {
-        $(".nav").toggleClass("open");
-        $(this).toggleClass("active");
-    });
-
-    // 2. Accordion Toggle (For your Services section)
-    $(".accordian-container .head").click(function() {
-        $(this).parent(".accordian-container").toggleClass("active");
-        $(this).next(".body").slideToggle();
-    });
-});
-
-// --- Gym Membership Quiz Logic (Outside the ready block) ---
+// --- 2. Quiz Logic (Declared ONLY ONCE) ---
 const quizData = [
     {
         question: "What is your main priority?",
@@ -577,7 +552,7 @@ const quizData = [
         ]
     },
     {
-        question: "Do you need 24/7 access (No Time Restrictions)?",
+        question: "Do you need 24/7 access?",
         options: [
             { text: "No, standard hours are fine", score: "Elite" },
             { text: "Yes, I need flexibility", score: "Elite Plus" },
@@ -586,55 +561,66 @@ const quizData = [
     }
 ];
 
-    let currentQ = 0;
-    let quizScores = { "Elite": 0, "Elite Plus": 0, "Premium": 0 };
+let currentQ = 0;
+let quizScores = { "Elite": 0, "Elite Plus": 0, "Premium": 0 };
 
-    window.loadQuiz = function() {
-        const q = quizData[currentQ];
-        const qText = document.getElementById("question-text");
-        const optionsDiv = document.getElementById("options-space");
+window.loadQuiz = function() {
+    const q = quizData[currentQ];
+    const qText = document.getElementById("question-text");
+    const optionsDiv = document.getElementById("options-space");
+    if (qText && optionsDiv) {
+        qText.innerText = q.question;
+        optionsDiv.innerHTML = "";
+        q.options.forEach(opt => {
+            const btn = document.createElement("button");
+            btn.innerText = opt.text;
+            btn.className = "btn";
+            btn.style.width = "100%";
+            btn.style.marginBottom = "10px";
+            btn.onclick = () => {
+                quizScores[opt.score]++;
+                currentQ++;
+                if (currentQ < quizData.length) loadQuiz();
+                else showQuizResult();
+            };
+            optionsDiv.appendChild(btn);
+        });
+    }
+};
 
-        if (qText && optionsDiv) {
-            qText.innerText = q.question;
-            optionsDiv.innerHTML = "";
-            
-            q.options.forEach(opt => {
-                const btn = document.createElement("button");
-                btn.innerText = opt.text;
-                btn.className = "btn"; // Uses your existing global CSS
-                btn.style.width = "100%";
-                btn.style.marginBottom = "10px";
-                btn.onclick = () => {
-                    quizScores[opt.score]++;
-                    currentQ++;
-                    if (currentQ < quizData.length) { 
-                        loadQuiz(); 
-                    } else { 
-                        showQuizResult(); 
-                    }
-                };
-                optionsDiv.appendChild(btn);
-            });
-        }
-    };
+window.showQuizResult = function() {
+    document.getElementById("question-space").style.display = "none";
+    document.getElementById("result-space").style.display = "block";
+    const winner = Object.keys(quizScores).reduce((a, b) => quizScores[a] > quizScores[b] ? a : b);
+    document.getElementById("recommended-plan").innerText = winner + " Membership";
+};
 
-    window.showQuizResult = function() {
-        document.getElementById("question-space").style.display = "none";
-        document.getElementById("result-space").style.display = "block";
-        const winner = Object.keys(quizScores).reduce((a, b) => quizScores[a] > quizScores[b] ? a : b);
-        document.getElementById("recommended-plan").innerText = winner + " Membership";
-    };
+// --- 3. jQuery Ready Block (Events) ---
+$(document).ready(function() {
+    // Navigation Toggle
+    $(".ham-burger").click(function() {
+        $(".nav").toggleClass("open");
+        $(this).toggleClass("active");
+    });
 
-    window.scrollToPricing = function() {
-        document.getElementById("price").scrollIntoView({ behavior: 'smooth' });
-    };
+    // Music Overlay Logic
+    const enterBtn = document.getElementById('enter-btn');
+    const overlay = document.getElementById('music-overlay');
+    const audio = document.getElementById('bgAudio');
+    if (enterBtn) {
+        enterBtn.addEventListener('click', function() {
+            audio.play().catch(err => console.log("Music blocked"));
+            if (overlay) overlay.style.display = 'none';
+        });
+    }
 
-    // Initialize the quiz immediately
+    // Initialize Quiz
     loadQuiz();
 });
     </script>
 </body>
 </html>
+
 
 
 
