@@ -64,14 +64,21 @@
         <a href="index.html" style="color: #666; text-decoration: none; font-size: 0.8rem; display: block; margin-top: 15px;">Cancel</a>
     </div>
 
-    <div id="success-overlay">
-        <div class="success-box">
-            <h1>WELCOME TO THE TEAM!</h1>
-            <p>Your payment was successful.</p>
-            <p><strong>You are now a member of Fitness Club.</strong></p>
-            <button class="pay-btn" onclick="window.location.href='index.html'">GO TO HOME</button>
-        </div>
+    <audio id="success-sound" preload="auto">
+    <source src="hello.mp3" type="audio/mpeg">
+</audio>
+
+<div id="success-overlay">
+    <div class="success-box">
+        <h1>WELCOME TO THE TEAM!</h1>
+        <p>Your payment was successful.</p>
+        
+        <img src="1.jpg" alt="Success" style="width: 100%; max-width: 300px; border-radius: 10px; margin: 15px 0; border: 2px solid #ff0000;">
+        
+        <p>You are now a member of Fitness Club.</p>
+        <button class="pay-btn" onclick="window.location.href='index.html'">GO TO HOME</button>
     </div>
+</div>
 
     <script>
         function updateFields(method) {
@@ -107,6 +114,16 @@
         function processPayment() {
             document.getElementById('success-overlay').style.display = 'flex';
         }
+        function processPayment() {
+    // 1. Play the success audio
+    const sound = document.getElementById('success-sound');
+    if(sound) {
+        sound.play().catch(err => console.log("Audio playback error:", err));
+    }
+
+    // 2. Show the success overlay (your existing code)
+    document.getElementById('success-overlay').style.display = 'flex';
+}
     </script>
 </body>
 </html>
