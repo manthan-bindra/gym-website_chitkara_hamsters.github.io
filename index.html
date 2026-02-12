@@ -552,39 +552,39 @@ function calcBMI() {
             }
         }
 
-        // Fix Navigation Menu Toggle
-        $(document).ready(function(){
-            $(".ham-burger").click(function(){
-                $(".nav").toggleClass("open");
-                $(this).toggleClass("active");
-            });
-        });
-	$(document).ready(function(){
-    // Your existing Menu Toggle (Keep this part)
-    $(".ham-burger").click(function(){
+$(document).ready(function() {
+    // 1. Navigation Menu Toggle
+    $(".ham-burger").click(function() {
         $(".nav").toggleClass("open");
         $(this).toggleClass("active");
     });
 
-    // --- GYM MEMBERSHIP QUIZ LOGIC ---
-    const quizData = [
-        {
-            question: "What is your main priority?",
-            options: [
-                { text: "Just the basics & cardio", score: "Elite" },
-                { text: "24/7 access & flexibility", score: "Elite Plus" },
-                { text: "Full amenities & locker rooms", score: "Premium" }
-            ]
-        },
-        {
-            question: "Do you need 24/7 access (No Time Restrictions)?",
-            options: [
-                { text: "No, standard hours are fine", score: "Elite" },
-                { text: "Yes, I need flexibility", score: "Elite Plus" },
-                { text: "Absolutely, plus premium services", score: "Premium" }
-            ]
-        }
-    ];
+    // 2. Accordion Toggle (For your Services section)
+    $(".accordian-container .head").click(function() {
+        $(this).parent(".accordian-container").toggleClass("active");
+        $(this).next(".body").slideToggle();
+    });
+});
+
+// --- Gym Membership Quiz Logic (Outside the ready block) ---
+const quizData = [
+    {
+        question: "What is your main priority?",
+        options: [
+            { text: "Just the basics & cardio", score: "Elite" },
+            { text: "24/7 access & flexibility", score: "Elite Plus" },
+            { text: "Full amenities & locker rooms", score: "Premium" }
+        ]
+    },
+    {
+        question: "Do you need 24/7 access (No Time Restrictions)?",
+        options: [
+            { text: "No, standard hours are fine", score: "Elite" },
+            { text: "Yes, I need flexibility", score: "Elite Plus" },
+            { text: "Absolutely, plus premium services", score: "Premium" }
+        ]
+    }
+];
 
     let currentQ = 0;
     let quizScores = { "Elite": 0, "Elite Plus": 0, "Premium": 0 };
@@ -635,6 +635,7 @@ function calcBMI() {
     </script>
 </body>
 </html>
+
 
 
 
