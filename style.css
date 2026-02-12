@@ -968,3 +968,36 @@ flex: 0 0 100%;
     border: 1px solid rgba(255, 255, 255, 0.1) !important;
     border-radius: 20px !important;
 }
+#quiz-container, #bmi-section {
+    background: rgba(26, 26, 26, 0.8) !important;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.box.wow:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(255, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+/* Pricing Box Hover Animation */
+.price-package .box {
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+}
+
+.price-package .box:hover {
+    transform: translateY(-15px); /* Lifts the box up */
+    box-shadow: 0 10px 30px rgba(255, 0, 0, 0.3); /* Adds a red glow */
+    border: 1px solid #ff0000;
+}
+
+/* Button Pulse Effect */
+.btn {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    background: #fff !important;
+    color: #ff0000 !important;
+    box-shadow: 0 0 15px #ff0000;
+}
